@@ -14,6 +14,6 @@ char *serializeSensorData(SensorData *sensorData);
 
 char *serializeComamnd(Command *command);
 
-SensorData *deserializeSensorData(char *buf);
+SensorData *deserializeSensorData(char *buf, int offset);
 
-Command *deserializeCommand(char *buf);
+Command *deserializeCommand(char *buf, int offset);

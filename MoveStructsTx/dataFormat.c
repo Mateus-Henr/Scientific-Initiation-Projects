@@ -10,7 +10,7 @@ void initializeMockupSensorData(SensorData *sensorData)
   sensorData->value = 555555;
 
   struct tm *now = localtime(&time(NULL));
-  sensordata->readTime = (now->tm_mday * 100 + now->tm_mon * 10000 + now->tm_year);
+  sensordata->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
 }
 
 
@@ -43,24 +43,24 @@ char *serializeCommand(Command *command)
 }
 
 
-SensorData *deserializeSensorData(char *buf)
+SensorData *deserializeSensorData(int *buf, int offset)
 {
     SensorData *sensorData = (SensorData *) malloc(sizeof(SensorData));
 
-    memcpy(&sensorData->value, buf, sizeof(sensorData->value));
-    memcpy(&sensorData->readTime, buf + sizeof(sensorData->value), sizeof(sensorData->readTime));
+    memcpy(&sensorData->value, buf + offset, sizeof(sensorData->value));
+    memcpy(&sensorData->readTime, buf + offset + sizeof(sensorData->value), sizeof(sensorData->readTime));
 
     return sensorData;
 }
 
 
 
-Command *deserializeCommand(char *buf)
+Command *deserializeCommand(int *buf, int offset)
 {
     Command *command = (Command *) malloc(sizeof(Command));
 
-    memcpy(&command->type, buf, sizeof(command->type));
-    memcpy(&command->value, buf + sizeof(command->type), sizeof(command->value));
+    memcpy(&command->type, buf + offset, sizeof(command->type));
+    memcpy(&command->value, buf + offset + sizeof(command->type), sizeof(command->value));
 
     return command;
 }

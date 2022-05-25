@@ -1,5 +1,5 @@
 /*
- *  ======== blinkAtFrequencyTx.c ========
+ *  ======== moveStructsyTx.c ========
  */
 
 /* XDC Module Headers */
@@ -78,30 +78,46 @@ void *mainThread(void *arg0)
 
     while (1)
     {
-        /* Setting the default address of the receiver */
+        /* Set the default address of the receiver */
         txPacket.dstAddr[0] = 0xaa;
 
-        /* Setting values to be sent */
+        /* Define structs to be sent */
+        SensorData sensorData;
         Command command;
 
+        /* Initialize mockup data to be sent */
+        initializeMockupSensorData(&sensorData);
         initializeMockupCommandData(&command);
 
-        char *buf = serialize(&command);
+        /* Serialize structs */
+        char *buf1 = serialize(&sensorData);
+        char *buf2 = serialize(&command);
 
-        for (int i = 0; i < sizeof(Command); i++)
+        /* Transfer serialized data into the packet to be sent */
+        int i = 0;
+        int totalSize = sizeof(Command) + sizeof(SensorData);
+
+        while (i < sizeof(Command))
         {
-            txPacket.payload[i] = buf[i];
+            txPacket.payload[i] = buf1[i];
+            i++;
         }
 
-        /* Setting payload's size */
-        txPacket.len = sizeof(Command);
+        while (i < totalSize)
+        {
+            txPacket.payload[i] = buf2[i - sizeof(Command)];
+            i++;
+        }
 
-        /* Setting interval */
+        /* Set payload's size */
+        txPacket.len = totalSize;
+
+        /* Set interval */
         EasyLink_getAbsTime(&absTime);
         txPacket.absTime =
                 absTime + EasyLink_ms_To_RadioTime(ONE_SECOND);
 
-        /* Sending packet */
+        /* Send packet */
         EasyLink_Status result = EasyLink_transmit(&txPacket);
 
         /* Indicate that a command has been sent */

@@ -1,4 +1,4 @@
-/*  ======== blinkAtFrequencyRx.c ========
+/*  ======== moveStructsyRx.c ========
 */
 
 /* XDC Module Headers */
@@ -72,9 +72,12 @@ void *mainThread(void *arg0)
         /* Receiving the packet */
         EasyLink_Status result = EasyLink_receive(&rxPacket);
 
-        Command *command = deserializeCommand(rxPacket.payload);
+        /* Deserialize data received into the proper struct */
+        SensorData *sensorData = deserializeSensorData(rx.packet, sizeof(Command));
+        Command *command = deserializeCommand(rxPacket.payload, 0);
 
-        if (command->type == 10 && (command->value == 50)
+        /* Check if data received is equal to the mockup data that was sent */
+        if (sensorData->value == 555555 && sensorData->readTime == 250520022 && command->type == 10 && command->value == 50)
         {
             LED_startBlinking(ledHandle[CONFIG_LED_0],
                                                   rxPacket.payload[TIME_INDEX] * ONE_HUNDRED,
