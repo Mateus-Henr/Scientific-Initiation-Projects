@@ -9,8 +9,10 @@ void initializeMockupSensorData(SensorData *sensorData)
 {
   sensorData->value = 555555;
 
-  struct tm *now = localtime(&time(NULL));
-  sensordata->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
+  time_t raw_time;
+  time(&raw_time);
+  struct tm *now = localtime(&raw_time);
+  sensorData->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
 }
 
 

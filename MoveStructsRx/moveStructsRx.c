@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stddef.h>
+#include "dataFormat.h"
 
 /* Driver Header files */
 #include <ti/drivers/GPIO.h>
@@ -73,7 +74,7 @@ void *mainThread(void *arg0)
         EasyLink_Status result = EasyLink_receive(&rxPacket);
 
         /* Deserialize data received into the proper struct */
-        SensorData *sensorData = deserializeSensorData(rx.packet, sizeof(Command));
+        SensorData *sensorData = deserializeSensorData(rxPacket.payload, sizeof(Command));
         Command *command = deserializeCommand(rxPacket.payload, 0);
 
         /* Check if data received is equal to the mockup data that was sent */

@@ -90,8 +90,8 @@ void *mainThread(void *arg0)
         initializeMockupCommandData(&command);
 
         /* Serialize structs */
-        char *buf1 = serialize(&sensorData);
-        char *buf2 = serialize(&command);
+        char *buf1 = serializeSensorData(&sensorData);
+        char *buf2 = serializeComamnd(&command);
 
         /* Transfer serialized data into the packet to be sent */
         int i = 0;
