@@ -91,7 +91,7 @@ void *mainThread(void *arg0)
 
         /* Serialize structs */
         char *buf1 = serializeSensorData(&sensorData);
-        char *buf2 = serializeComamnd(&command);
+        char *buf2 = serializeCommand(&command);
 
         /* Transfer serialized data into the packet to be sent */
         int i = 0;

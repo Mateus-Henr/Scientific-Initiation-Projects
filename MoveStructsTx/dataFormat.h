@@ -12,7 +12,7 @@ typedef struct Command
 
 char *serializeSensorData(SensorData *sensorData);
 
-char *serializeComamnd(Command *command);
+char *serializeCommand(Command *command);
 
 SensorData *deserializeSensorData(int *buf, int offset);
 
