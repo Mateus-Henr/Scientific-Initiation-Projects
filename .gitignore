@@ -56,3 +56,7 @@ dkms.conf
 .metadata/
 dvt/
 RemoteSystemsTempFiles/
+Release/*
+.xdchelp
+config/*
+.launches/*
