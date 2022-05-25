@@ -7,7 +7,15 @@
 *.obj
 *.elf
 
-# Linker output
+# Linker output# Code Composer Studio
+# http://processors.wiki.ti.com/index.php/Source_control_with_CCS
+Debug/
+Release/
+.xdchelp
+.config/
+.launches/
+.metadata/
+RemoteSystemsTempFiles/
 *.ilk
 *.map
 *.exp
@@ -57,6 +65,9 @@ dkms.conf
 dvt/
 RemoteSystemsTempFiles/
 Release/*
+Debug/
+Release/
 .xdchelp
-config/*
-.launches/*
+.metadata/
+config/
+.launches/
