@@ -5,47 +5,47 @@
 #include "dataFormat.h"
 
 
-void initializeMockupSensorData(SensorData *sensorData)
-{
-  sensorData->value = 555555;
+//void initializeMockupSensorData(SensorData *sensorData)
+//{
+//  sensorData->value = 555555;
+//
+//  time_t raw_time;
+//  time(&raw_time);
+//  struct tm *now = localtime(&raw_time);
+//  sensorData->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
+//}
+//
+//
+//void initializeMockupCommandData(Command *command)
+//{
+//  command->type = 10;
+//  command->value = 50;
+//}
+//
+//
+//char *serializeSensorData(SensorData *sensorData)
+//{
+//    char *buf = (char *) malloc(sizeof(SensorData));
+//
+//    memcpy(buf, &sensorData->value, sizeof(sensorData->value));
+//    memcpy(buf + sizeof(sensorData->value), &sensorData->readTime, sizeof(sensorData->readTime));
+//
+//    return buf;
+//}
+//
+//
+//char *serializeCommand(Command *command)
+//{
+//    char *buf = (char *) malloc(sizeof(Command));
+//
+//    memcpy(buf, &command->type, sizeof(command->type));
+//    memcpy(buf + sizeof(command->type), &command->value, sizeof(command->value));
+//
+//    return buf;
+//}
 
-  time_t raw_time;
-  time(&raw_time);
-  struct tm *now = localtime(&raw_time);
-  sensorData->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
-}
 
-
-void initializeMockupCommandData(Command *command)
-{
-  command->type = 10;
-  command->value = 50;
-}
-
-
-char *serializeSensorData(SensorData *sensorData)
-{
-    char *buf = (char *) malloc(sizeof(SensorData));
-
-    memcpy(buf, &sensorData->value, sizeof(sensorData->value));
-    memcpy(buf + sizeof(sensorData->value), &sensorData->readTime, sizeof(sensorData->readTime));
-
-    return buf;
-}
-
-
-char *serializeCommand(Command *command)
-{
-    char *buf = (char *) malloc(sizeof(Command));
-
-    memcpy(buf, &command->type, sizeof(command->type));
-    memcpy(buf + sizeof(command->type), &command->value, sizeof(command->value));
-
-    return buf;
-}
-
-
-SensorData *deserializeSensorData(int *buf, int offset)
+SensorData *deserializeSensorData(uint8_t *buf, int offset)
 {
     SensorData *sensorData = (SensorData *) malloc(sizeof(SensorData));
 
@@ -57,7 +57,7 @@ SensorData *deserializeSensorData(int *buf, int offset)
 
 
 
-Command *deserializeCommand(int *buf, int offset)
+Command *deserializeCommand(uint8_t *buf, int offset)
 {
     Command *command = (Command *) malloc(sizeof(Command));
 

@@ -10,10 +10,15 @@ typedef struct Command
   long value;
 } Command;
 
+
+void initializeMockupSensorData(SensorData *sensorData);
+
+void initializeMockupCommandData(Command *command);
+
 char *serializeSensorData(SensorData *sensorData);
 
 char *serializeCommand(Command *command);
 
-SensorData *deserializeSensorData(int *buf, int offset);
-
-Command *deserializeCommand(int *buf, int offset);
+//SensorData *deserializeSensorData(uint8_t *buf, int offset);
+//
+//Command *deserializeCommand(uint8_t *buf, int offset);

@@ -45,24 +45,24 @@ char *serializeCommand(Command *command)
 }
 
 
-SensorData *deserializeSensorData(int *buf, int offset)
-{
-    SensorData *sensorData = (SensorData *) malloc(sizeof(SensorData));
-
-    memcpy(&sensorData->value, buf + offset, sizeof(sensorData->value));
-    memcpy(&sensorData->readTime, buf + offset + sizeof(sensorData->value), sizeof(sensorData->readTime));
-
-    return sensorData;
-}
-
-
-
-Command *deserializeCommand(int *buf, int offset)
-{
-    Command *command = (Command *) malloc(sizeof(Command));
-
-    memcpy(&command->type, buf + offset, sizeof(command->type));
-    memcpy(&command->value, buf + offset + sizeof(command->type), sizeof(command->value));
-
-    return command;
-}
+//SensorData *deserializeSensorData(uint8_t *buf, int offset)
+//{
+//    SensorData *sensorData = (SensorData *) malloc(sizeof(SensorData));
+//
+//    memcpy(&sensorData->value, buf + offset, sizeof(sensorData->value));
+//    memcpy(&sensorData->readTime, buf + offset + sizeof(sensorData->value), sizeof(sensorData->readTime));
+//
+//    return sensorData;
+//}
+//
+//
+//
+//Command *deserializeCommand(uint8_t *buf, int offset)
+//{
+//    Command *command = (Command *) malloc(sizeof(Command));
+//
+//    memcpy(&command->type, buf + offset, sizeof(command->type));
+//    memcpy(&command->value, buf + offset + sizeof(command->type), sizeof(command->value));
+//
+//    return command;
+//}

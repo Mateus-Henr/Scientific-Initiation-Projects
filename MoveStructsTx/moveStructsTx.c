@@ -48,9 +48,7 @@ EasyLink_TxPacket txPacket = {{0}, 0, 0, {0}};
  */
 void *mainThread(void *arg0)
 {
-    /* Initializing the variables */
-    uint8_t time = 0;
-    uint8_t command = 0;
+    /* Initialize variable */
     uint8_t onOrOff = 0;
 
     uint32_t absTime;
