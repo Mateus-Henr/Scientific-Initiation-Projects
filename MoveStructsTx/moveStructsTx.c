@@ -1,5 +1,5 @@
 /*
- *  ======== moveStructsyTx.c ========
+ *  ======== moveStructsTx.c ========
  */
 
 /* XDC Module Headers */
@@ -9,7 +9,9 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stddef.h>
-#include "dataFormat.h"
+
+/* Data transmission files */
+#include "data/dataFormat.h"
 
 /* TI-RTOS Header files */
 #include <ti/drivers/PIN.h>
@@ -26,9 +28,6 @@
 #define CONFIG_PIN_GLED                   0x00000007
 
 #define ONE_SECOND 1000
-#define FIVE_MILLISECONDS 5000
-#define COMMAND_INDEX 0
-#define TIME_INDEX 1
 
 /* Pin driver handle */
 static PIN_Handle ledPinHandle;
@@ -88,19 +87,21 @@ void *mainThread(void *arg0)
         initializeMockupCommandData(&command);
 
         /* Serialize structs */
-        char *buf1 = serializeSensorData(&sensorData);
-        char *buf2 = serializeCommand(&command);
+        uint8_t *buf1 = serializeSensorData(&sensorData);
+        uint8_t *buf2 = serializeCommand(&command);
 
         /* Transfer serialized data into the packet to be sent */
         int i = 0;
         int totalSize = sizeof(Command) + sizeof(SensorData);
 
+        /* Store serialized SensorData into the array to be sent */
         while (i < sizeof(Command))
         {
             txPacket.payload[i] = buf1[i];
             i++;
         }
 
+        /* Store serialized Command into the array to be sent */
         while (i < totalSize)
         {
             txPacket.payload[i] = buf2[i - sizeof(Command)];
@@ -110,10 +111,9 @@ void *mainThread(void *arg0)
         /* Set payload's size */
         txPacket.len = totalSize;
 
-        /* Set interval */
+        /* Set interval of transmission */
         EasyLink_getAbsTime(&absTime);
-        txPacket.absTime =
-                absTime + EasyLink_ms_To_RadioTime(ONE_SECOND);
+        txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_SECOND);
 
         /* Send packet */
         EasyLink_Status result = EasyLink_transmit(&txPacket);

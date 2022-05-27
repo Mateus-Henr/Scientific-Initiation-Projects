@@ -1,6 +1,6 @@
 typedef struct SensorData
 {
-  long value;
+  long value; // Same as uint_16t
   long readTime;
 } SensorData;
 
@@ -15,10 +15,6 @@ void initializeMockupSensorData(SensorData *sensorData);
 
 void initializeMockupCommandData(Command *command);
 
-char *serializeSensorData(SensorData *sensorData);
+uint8_t *serializeSensorData(SensorData *sensorData);
 
-char *serializeCommand(Command *command);
-
-//SensorData *deserializeSensorData(uint8_t *buf, int offset);
-//
-//Command *deserializeCommand(uint8_t *buf, int offset);
+uint8_t *serializeCommand(Command *command);

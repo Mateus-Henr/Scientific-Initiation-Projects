@@ -1,4 +1,4 @@
-/*  ======== moveStructsyRx.c ========
+/*  ======== moveStructsRx.c ========
 */
 
 /* XDC Module Headers */
@@ -8,7 +8,9 @@
 #include <unistd.h>
 #include <stdint.h>
 #include <stddef.h>
-#include "dataFormat.h"
+
+/* Data transmission files */
+#include "data/dataFormat.h"
 
 /* Driver Header files */
 #include <ti/drivers/GPIO.h>
@@ -29,9 +31,7 @@
 /* Number of LEDs */
 #define CONFIG_LEDCOUNT        2
 
-#define ONE_HUNDRED 100
-#define COMMAND_INDEX 0
-#define TIME_INDEX 1
+#define ONE_SECOND 1000
 
 /* LED handle */
 LED_Handle ledHandle[CONFIG_LEDCOUNT];
@@ -70,7 +70,7 @@ void *mainThread(void *arg0)
 
     while (1)
     {
-        /* Receiving the packet */
+        /* Receive the packet */
         EasyLink_Status result = EasyLink_receive(&rxPacket);
 
         /* Deserialize data received into the proper struct */
@@ -80,9 +80,7 @@ void *mainThread(void *arg0)
         /* Check if data received is equal to the mockup data that was sent */
         if (sensorData->value == 555555 && sensorData->readTime == 250520022 && command->type == 10 && command->value == 50)
         {
-            LED_startBlinking(ledHandle[CONFIG_LED_0],
-                                                  rxPacket.payload[TIME_INDEX] * ONE_HUNDRED,
-                                                  LED_BLINK_FOREVER);
+            LED_startBlinking(ledHandle[CONFIG_LED_0], ONE_SECOND, LED_BLINK_FOREVER);
         }
     }
 }
