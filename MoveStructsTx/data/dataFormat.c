@@ -5,7 +5,7 @@
 #include "dataFormat.h"
 
 
-/* Initialize SensorData with some mockup data.
+/* Initialise SensorData with some mockup data.
  *
  * @param   sensorData    pointer to the struct.
  */
@@ -20,7 +20,7 @@ void initializeMockupSensorData(SensorData *sensorData)
 }
 
 
-/* Initialize Command with some mockup data.
+/* Initialise Command with some mockup data.
  *
  * @param   command   pointer to the struct.
  */

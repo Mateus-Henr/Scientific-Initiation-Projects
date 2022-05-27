@@ -31,7 +31,9 @@
 /* Number of LEDs */
 #define CONFIG_LEDCOUNT        2
 
+/* Time */
 #define ONE_SECOND 1000
+
 
 /* LED handle */
 LED_Handle ledHandle[CONFIG_LEDCOUNT];
@@ -39,27 +41,30 @@ LED_Handle ledHandle[CONFIG_LEDCOUNT];
 /* Packet that receives the data */
 EasyLink_RxPacket rxPacket = {{0}, 0, 0, 0, 0, {0}};
 
+
 /*
  *  ======== mainThread ========
  */
 void *mainThread(void *arg0)
 {
+    /* Initialise variable */
     LED_Params ledParams;
 
+    /* Open LED pins */
     LED_init();
     Board_initGeneral();
 
-    /* Open LED0 and LED1 with default params */
+    /* Open LED0 and LED1 with default parameters */
     LED_Params_init(&ledParams);
     ledHandle[CONFIG_LED_0] = LED_open(CONFIG_LED_0, &ledParams);
     ledHandle[CONFIG_LED_1] = LED_open(CONFIG_LED_1, &ledParams);
 
-    /* Initialize the EasyLink parameters to their default values */
+    /* Initialise the EasyLink parameters to their default values */
     EasyLink_Params easyLink_params;
     EasyLink_Params_init(&easyLink_params);
 
     /*
-     * Initialize EasyLink with the settings found in ti_easylink_config.h
+     * Initialise EasyLink with the settings found in ti_easylink_config.h
      * Modify EASYLINK_PARAM_CONFIG in ti_easylink_config.h to change the default
      * PHY
      */

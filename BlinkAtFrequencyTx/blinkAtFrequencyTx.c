@@ -20,15 +20,21 @@
 #include "easylink/EasyLink.h"
 
 /* LaunchPad LED Red, Parent Signal: CONFIG_GPIO_RLED GPIO Pin, (DIO6) */
-#define CONFIG_PIN_RLED                   0x00000006
+#define CONFIG_PIN_RLED 0x00000006
 /* LaunchPad LED Green, Parent Signal: CONFIG_GPIO_GLED GPIO Pin, (DIO7) */
-#define CONFIG_PIN_GLED                   0x00000007
+#define CONFIG_PIN_GLED 0x00000007
 
-#define PAYLOAD_LENGTH 2
+/* Time */
 #define ONE_SECOND 1000
 #define FIVE_MILLISECONDS 5000
+
+/* Indexes */
 #define COMMAND_INDEX 0
 #define TIME_INDEX 1
+
+/* Packet's length*/
+#define PAYLOAD_LENGTH 2
+
 
 /* Pin driver handle */
 static PIN_Handle ledPinHandle;
@@ -43,16 +49,16 @@ PIN_Config pinTable[] = {CONFIG_PIN_GLED | CONFIG_PIN_RLED};
 /* Packet to be sent */
 EasyLink_TxPacket txPacket = {{0}, 0, 0, {0}};
 
+
 /*
  *  ======== mainThread ========
  */
 void *mainThread(void *arg0)
 {
-    /* Initializing the variables */
+    /* Initialise variables */
     uint8_t time = 0;
     uint8_t command = 0;
     uint8_t onOrOff = 0;
-
     uint32_t absTime;
 
     /* Open LED pins */
@@ -62,12 +68,12 @@ void *mainThread(void *arg0)
     PIN_setOutputValue(ledPinHandle, CONFIG_PIN_GLED, 0);
     PIN_setOutputValue(ledPinHandle, CONFIG_PIN_RLED, 0);
 
-    // Initialize the EasyLink parameters to their default values
+    // Initialise the EasyLink parameters to their default values
     EasyLink_Params easyLink_params;
     EasyLink_Params_init(&easyLink_params);
 
     /*
-     * Initialize EasyLink with the settings found in ti_easylink_config.h
+     * Initialise EasyLink with the settings found in ti_easylink_config.h
      * Modify EASYLINK_PARAM_CONFIG in ti_easylink_config.h to change the default
      * PHY
      */
@@ -78,22 +84,21 @@ void *mainThread(void *arg0)
 
     while (1)
     {
-        /* Setting the default address of the receiver */
+        /* Set the default address of the receiver */
         txPacket.dstAddr[0] = 0xaa;
 
-        /* Setting values to be sent */
+        /* Set values to be sent */
         txPacket.payload[COMMAND_INDEX] = command;
         txPacket.payload[TIME_INDEX] = time;
 
-        /* Setting payload's size */
+        /* Set payload's size */
         txPacket.len = PAYLOAD_LENGTH;
 
-        /* Setting interval */
+        /* Set interval */
         EasyLink_getAbsTime(&absTime);
-        txPacket.absTime =
-                absTime + EasyLink_ms_To_RadioTime(ONE_SECOND * time);
+        txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_SECOND * time);
 
-        /* Sending packet */
+        /* Send packet */
         EasyLink_Status result = EasyLink_transmit(&txPacket);
 
         /* Indicate that a command has been sent */

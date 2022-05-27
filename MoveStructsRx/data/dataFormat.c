@@ -6,6 +6,7 @@
 
 #define NULL_TERMINATOR 1
 
+
 /*
  *   Deserialize the data back to the specified struct.
  *
