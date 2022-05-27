@@ -32,7 +32,7 @@ moveStructsTx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/
 moveStructsTx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/time.h
 moveStructsTx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/abi_prefix.h
 moveStructsTx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/xlocale/_time.h
-moveStructsTx.obj: ../dataFormat.h
+moveStructsTx.obj: ../data/dataFormat.h
 moveStructsTx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/PIN.h
 moveStructsTx.obj: syscfg/ti_drivers_config.h
 moveStructsTx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/devices/DeviceFamily.h
@@ -116,7 +116,7 @@ F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/abi_prefix.h:
 
 F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/xlocale/_time.h:
 
-../dataFormat.h:
+../data/dataFormat.h:
 
 F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/PIN.h:
 

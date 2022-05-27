@@ -17,7 +17,6 @@ C_SRCS += \
 ./syscfg/ti_radio_config.c \
 ./syscfg/ti_drivers_config.c \
 ./syscfg/ti_sysbios_config.c \
-../dataFormat.c \
 ../main_tirtos.c \
 ../moveStructsRx.c 
 
@@ -37,7 +36,6 @@ C_DEPS += \
 ./syscfg/ti_radio_config.d \
 ./syscfg/ti_drivers_config.d \
 ./syscfg/ti_sysbios_config.d \
-./dataFormat.d \
 ./main_tirtos.d \
 ./moveStructsRx.d 
 
@@ -47,7 +45,6 @@ OBJS += \
 ./syscfg/ti_radio_config.obj \
 ./syscfg/ti_drivers_config.obj \
 ./syscfg/ti_sysbios_config.obj \
-./dataFormat.obj \
 ./main_tirtos.obj \
 ./moveStructsRx.obj 
 
@@ -70,7 +67,6 @@ OBJS__QUOTED += \
 "syscfg\ti_radio_config.obj" \
 "syscfg\ti_drivers_config.obj" \
 "syscfg\ti_sysbios_config.obj" \
-"dataFormat.obj" \
 "main_tirtos.obj" \
 "moveStructsRx.obj" 
 
@@ -90,7 +86,6 @@ C_DEPS__QUOTED += \
 "syscfg\ti_radio_config.d" \
 "syscfg\ti_drivers_config.d" \
 "syscfg\ti_sysbios_config.d" \
-"dataFormat.d" \
 "main_tirtos.d" \
 "moveStructsRx.d" 
 
@@ -110,7 +105,6 @@ C_SRCS__QUOTED += \
 "./syscfg/ti_radio_config.c" \
 "./syscfg/ti_drivers_config.c" \
 "./syscfg/ti_sysbios_config.c" \
-"../dataFormat.c" \
 "../main_tirtos.c" \
 "../moveStructsRx.c" 
 

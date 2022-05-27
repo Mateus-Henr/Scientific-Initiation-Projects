@@ -15,9 +15,9 @@ ORDERED_OBJS += \
 "./syscfg/ti_radio_config.obj" \
 "./syscfg/ti_drivers_config.obj" \
 "./syscfg/ti_sysbios_config.obj" \
-"./dataFormat.obj" \
 "./main_tirtos.obj" \
 "./moveStructsTx.obj" \
+"./data/dataFormat.obj" \
 "./easylink/EasyLink.obj" \
 "../cc13x2_cc26x2_tirtos7.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -33,8 +33,10 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include data/subdir_vars.mk
 -include easylink/subdir_vars.mk
 -include subdir_rules.mk
+-include data/subdir_rules.mk
 -include easylink/subdir_rules.mk
 -include objects.mk
 
@@ -166,8 +168,8 @@ MoveStructsTx.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "syscfg\ti_sysbios_config.obj" "dataFormat.obj" "main_tirtos.obj" "moveStructsTx.obj" "easylink\EasyLink.obj" 
-	-$(RM) "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "syscfg\ti_sysbios_config.d" "dataFormat.d" "main_tirtos.d" "moveStructsTx.d" "easylink\EasyLink.d" 
+	-$(RM) "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "syscfg\ti_sysbios_config.obj" "main_tirtos.obj" "moveStructsTx.obj" "data\dataFormat.obj" "easylink\EasyLink.obj" 
+	-$(RM) "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "syscfg\ti_sysbios_config.d" "main_tirtos.d" "moveStructsTx.d" "data\dataFormat.d" "easylink\EasyLink.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

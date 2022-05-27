@@ -32,7 +32,7 @@ moveStructsRx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/
 moveStructsRx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/time.h
 moveStructsRx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/abi_prefix.h
 moveStructsRx.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/xlocale/_time.h
-moveStructsRx.obj: ../dataFormat.h
+moveStructsRx.obj: ../data/dataFormat.h
 moveStructsRx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/GPIO.h
 moveStructsRx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/devices/DeviceFamily.h
 moveStructsRx.obj: F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/gpio/GPIOCC26XX.h
@@ -122,7 +122,7 @@ F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/abi_prefix.h:
 
 F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/xlocale/_time.h:
 
-../dataFormat.h:
+../data/dataFormat.h:
 
 F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/GPIO.h:
 
