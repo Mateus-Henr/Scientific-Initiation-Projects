@@ -1,13 +1,15 @@
+#include <stdint.h>
+
 typedef struct SensorData
 {
-  long value; // Same as uint_16t
-  long readTime;
+    uint16_t value;
+    uint16_t readTime;
 } SensorData;
 
 typedef struct Command
 {
-  int type;
-  long value;
+    char type;
+    uint16_t value;
 } Command;
 
 

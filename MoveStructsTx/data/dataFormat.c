@@ -1,6 +1,6 @@
-#include <stdlib.h>
 #include <stddef.h>
 #include <time.h>
+#include <string.h>
 
 #include "dataFormat.h"
 
@@ -11,12 +11,12 @@
  */
 void initializeMockupSensorData(SensorData *sensorData)
 {
-  sensorData->value = 555555;
+    sensorData->value = 5555;
 
-  time_t raw_time = time(NULL);
-  struct tm *now = localtime(&raw_time);
-  // Arrange data into the format 25022022 (ddmmaaaa)
-  sensorData->readTime = ((now->tm_mday * 100 + now->tm_mon) * 10000 + now->tm_year);
+    time_t raw_time = time(NULL);
+    struct tm *now = localtime(&raw_time);
+    // Arrange time into the format 025959 (hhmm)
+    sensorData->readTime = now->tm_hour * 100 + now->tm_min;
 }
 
 
@@ -26,8 +26,8 @@ void initializeMockupSensorData(SensorData *sensorData)
  */
 void initializeMockupCommandData(Command *command)
 {
-  command->type = 10;
-  command->value = 50;
+    command->type = 'c';
+    command->value = 50;
 }
 
 
@@ -42,9 +42,9 @@ void initializeMockupCommandData(Command *command)
 uint8_t serializeSensorData(uint8_t *buf, SensorData *sensorData, uint8_t offset)
 {
     memcpy(buf + offset, &sensorData->value, sizeof(sensorData->value));
-    memcpy(buf + offset + 1, &sensorData->readTime, sizeof(sensorData->readTime));
+    memcpy(buf + offset + sizeof(sensorData->value), &sensorData->readTime, sizeof(sensorData->readTime));
 
-    return offset + 2;
+    return offset + sizeof(sensorData->value) + sizeof(sensorData->readTime);
 }
 
 
@@ -59,7 +59,8 @@ uint8_t serializeSensorData(uint8_t *buf, SensorData *sensorData, uint8_t offset
 uint8_t serializeCommand(uint8_t *buf, Command *command, uint8_t offset)
 {
     memcpy(buf + offset, &command->type, sizeof(command->type));
-    memcpy(buf + offset + 1, &command->value, sizeof(command->value));
+    memcpy(buf + offset + sizeof(command->type), &command->value, sizeof(command->value));
 
-    return offset + 2;
+    return offset + sizeof(command->type) + sizeof(command->value);
 }
+
