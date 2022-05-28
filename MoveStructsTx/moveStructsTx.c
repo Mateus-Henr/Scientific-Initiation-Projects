@@ -87,30 +87,8 @@ void *mainThread(void *arg0)
         initializeMockupSensorData(&sensorData);
         initializeMockupCommandData(&command);
 
-        /* Serialize structs */
-        uint8_t *buf1 = serializeSensorData(&sensorData);
-        uint8_t *buf2 = serializeCommand(&command);
-
-        /* Transfer serialized data into the packet to be sent */
-        int i = 0;
-        int totalSize = sizeof(Command) + sizeof(SensorData);
-
-        /* Store serialized SensorData into the array to be sent */
-        while (i < sizeof(Command))
-        {
-            txPacket.payload[i] = buf1[i];
-            i++;
-        }
-
-        /* Store serialized Command into the array to be sent */
-        while (i < totalSize)
-        {
-            txPacket.payload[i] = buf2[i - sizeof(Command)];
-            i++;
-        }
-
-        /* Set payload's size */
-        txPacket.len = totalSize;
+        /* Serialize structs and set the payload's size */
+        txPacket.len = serializeCommand(txPacket.payload, &command, serializeSensorData(txPacket.payload, &sensorData, 0));
 
         /* Set interval of transmission */
         EasyLink_getAbsTime(&absTime);

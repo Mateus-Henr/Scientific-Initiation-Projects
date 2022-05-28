@@ -11,6 +11,6 @@ typedef struct Command
 } Command;
 
 
-SensorData *deserializeSensorData(uint8_t *buf, int offset);
+uint8_t deserializeSensorData(SensorData *sensorData, uint8_t *buf, uint8_t offset);
 
-Command *deserializeCommand(uint8_t *buf, int offset);
+uint8_t deserializeCommand(Command *command, uint8_t *buf, uint8_t offset);

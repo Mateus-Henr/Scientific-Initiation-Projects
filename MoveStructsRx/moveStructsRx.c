@@ -75,15 +75,18 @@ void *mainThread(void *arg0)
 
     while (1)
     {
+        /* Initialise variables */
+        SensorData sensorData;
+        Command command;
+
         /* Receive the packet */
         EasyLink_Status result = EasyLink_receive(&rxPacket);
 
         /* Deserialize data received into the proper struct */
-        SensorData *sensorData = deserializeSensorData(rxPacket.payload, sizeof(Command));
-        Command *command = deserializeCommand(rxPacket.payload, 0);
+        deserializeCommand(&command, rxPacket.payload, deserializeSensorData(&sensorData, rxPacket.payload, 0));
 
         /* Check if data received is equal to the mockup data that was sent */
-        if (sensorData->value == 555555 && sensorData->readTime == 250520022 && command->type == 10 && command->value == 50)
+        if (sensorData.value == 555555 && sensorData.readTime == 250520022 && command.type == 10 && command.value == 50)
         {
             LED_startBlinking(ledHandle[CONFIG_LED_0], ONE_SECOND, LED_BLINK_FOREVER);
         }

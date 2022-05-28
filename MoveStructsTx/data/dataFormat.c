@@ -31,33 +31,35 @@ void initializeMockupCommandData(Command *command)
 }
 
 
-/*  Serializes data, and store it in an int array.
+/*
+ * Serializes data, and store it in an array.
  *
- * @param    sensorData    pointer to the struct.
- * @return                 pointer to an int array.
+ * @param     sensorData   pointer to the struct (dest).
+ * @param     buf          buffer to store the data (src).
+ * @param     offset       start position in the buffer.
+ * @return                 final buffer's index.
  */
-uint8_t *serializeSensorData(SensorData *sensorData)
+uint8_t serializeSensorData(uint8_t *buf, SensorData *sensorData, uint8_t offset)
 {
-    uint8_t *buf = (uint8_t *) malloc(sizeof(SensorData));
+    memcpy(buf + offset, &sensorData->value, sizeof(sensorData->value));
+    memcpy(buf + offset + 1, &sensorData->readTime, sizeof(sensorData->readTime));
 
-    memcpy(buf, &sensorData->value, sizeof(sensorData->value));
-    memcpy(buf + sizeof(sensorData->value), &sensorData->readTime, sizeof(sensorData->readTime));
-
-    return buf;
+    return offset + 2;
 }
 
 
-/*  Serializes data, and store it in an int array.
+/*
+ * Serializes data, and store it in an array.
  *
- * @param    Command    pointer to the struct.
- * @return              pointer to an int array.
+ * @param     command      pointer to the struct (dest).
+ * @param     buf          buffer to store the data (src).
+ * @param     offset       start position in the buffer.
+ * @return                 final buffer's index.
  */
-uint8_t *serializeCommand(Command *command)
+uint8_t serializeCommand(uint8_t *buf, Command *command, uint8_t offset)
 {
-    uint8_t *buf = (uint8_t *) malloc(sizeof(Command));
+    memcpy(buf + offset, &command->type, sizeof(command->type));
+    memcpy(buf + offset + 1, &command->value, sizeof(command->value));
 
-    memcpy(buf, &command->type, sizeof(command->type));
-    memcpy(buf + sizeof(command->type), &command->value, sizeof(command->value));
-
-    return buf;
+    return offset + 2;
 }
