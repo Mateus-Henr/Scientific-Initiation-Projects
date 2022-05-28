@@ -8,14 +8,14 @@ SHELL = cmd.exe
 %.obj: ../%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx" --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/posix/ccs" --include_path="C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include" --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx" --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/posix/ccs" --include_path="F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include" --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
 build-258030063: ../config.syscfg
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: SysConfig'
-	"C:/Programming/TI/CCS/ccs/utils/sysconfig_1.12.0/sysconfig_cli.bat" -s "C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/.metadata/product.json" --script "C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/config.syscfg" -o "syscfg" --compiler ccs
+	"F:/ti/ccs1110/sysconfig_1_12_0/sysconfig_cli.bat" -s "F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/.metadata/product.json" --script "F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/config.syscfg" -o "syscfg" --compiler ccs
 	@echo 'Finished building: "$<"'
 	@echo ' '
 
@@ -37,7 +37,7 @@ syscfg/: build-258030063
 syscfg/%.obj: ./syscfg/%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: Arm Compiler'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx" --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" --include_path="C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/posix/ccs" --include_path="C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include" --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="syscfg/$(basename $(<F)).d_raw" --include_path="C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" --obj_directory="syscfg" $(GEN_OPTS__FLAG) "$<"
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx" --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" --include_path="F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/posix/ccs" --include_path="F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include" --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --preproc_with_compile --preproc_dependency="syscfg/$(basename $(<F)).d_raw" --include_path="F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" --obj_directory="syscfg" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 

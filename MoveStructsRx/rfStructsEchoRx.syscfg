@@ -9,10 +9,9 @@
  * Import the modules used in this configuration.
  */
 const GPIO        = scripting.addModule("/ti/drivers/GPIO");
+const GPIO1       = GPIO.addInstance();
+const GPIO2       = GPIO.addInstance();
 const Power       = scripting.addModule("/ti/drivers/Power");
-const LED         = scripting.addModule("/ti/drivers/apps/LED", {}, false);
-const LED1        = LED.addInstance();
-const LED2        = LED.addInstance();
 const easylink    = scripting.addModule("/ti/easylink/easylink");
 const Settings    = scripting.addModule("/ti/posix/tirtos/Settings");
 const BIOS        = scripting.addModule("/ti/sysbios/BIOS");
@@ -27,12 +26,14 @@ const Timestamp   = scripting.addModule("/ti/sysbios/runtime/Timestamp");
 /**
  * Write custom configuration values to the imported modules.
  */
+GPIO1.$name     = "CONFIG_GPIO_RLED";
+GPIO1.$hardware = system.deviceData.board.components.LED_RED;
+
+GPIO2.$name     = "CONFIG_GPIO_GLED";
+GPIO2.$hardware = system.deviceData.board.components.LED_GREEN;
+
 const CCFG              = scripting.addModule("/ti/devices/CCFG", {}, false);
 CCFG.ccfgTemplate.$name = "ti_devices_CCFG_CCFGCC26XXTemplate0";
-
-LED1.$name = "CONFIG_LED_0";
-
-LED2.$name = "CONFIG_LED_1";
 
 easylink.radioConfigEasylinkPhyCustom.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
 
@@ -76,6 +77,6 @@ System.supportModule   = "SysCallback";
  * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
  * re-solve from scratch.
  */
-LED1.ledPin.$suggestSolution = "boosterpack.30";
-LED2.ledPin.$suggestSolution = "boosterpack.9";
-Timer.rtc.$suggestSolution   = "RTC0";
+GPIO1.gpioPin.$suggestSolution = "boosterpack.39";
+GPIO2.gpioPin.$suggestSolution = "boosterpack.40";
+Timer.rtc.$suggestSolution     = "RTC0";

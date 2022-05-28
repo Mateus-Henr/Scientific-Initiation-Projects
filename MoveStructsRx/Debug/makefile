@@ -4,19 +4,19 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS
+CG_TOOL_ROOT := F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./main_tirtos.obj" \
+"./rfStructsEchoRx.obj" \
 "./syscfg/ti_easylink_config.obj" \
 "./syscfg/ti_devices_config.obj" \
 "./syscfg/ti_radio_config.obj" \
 "./syscfg/ti_drivers_config.obj" \
 "./syscfg/ti_sysbios_config.obj" \
-"./main_tirtos.obj" \
-"./moveStructsRx.obj" \
 "./data/dataFormat.obj" \
 "./easylink/EasyLink.obj" \
 "../cc13x2_cc26x2_tirtos7.cmd" \
@@ -134,42 +134,42 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-MoveStructsRx.out \
+rfStructsEchoRx.out \
 
 EXE_OUTPUTS__QUOTED += \
-"MoveStructsRx.out" \
+"rfStructsEchoRx.out" \
 
 BIN_OUTPUTS += \
-MoveStructsRx.hex \
+rfStructsEchoRx.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"MoveStructsRx.hex" \
+"rfStructsEchoRx.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "MoveStructsRx.out"
+	@$(MAKE) --no-print-directory -Onone "rfStructsEchoRx.out"
 
 # Tool invocations
-MoveStructsRx.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+rfStructsEchoRx.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"MoveStructsRx.map" -i"C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" -i"C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" -i"C:/Projects/CCS/Scientific-Initiation-Projects/MoveStructsRx/Debug/syscfg" -i"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="MoveStructsRx_linkInfo.xml" --rom_model -o "MoveStructsRx.out" $(ORDERED_OBJS)
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"rfStructsEchoRx.map" -i"F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" -i"F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" -i"F:/Scientific-Initiation-Projects/MoveStructsRx/Debug/syscfg" -i"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="rfStructsEchoRx_linkInfo.xml" --rom_model -o "rfStructsEchoRx.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-MoveStructsRx.hex: $(EXE_OUTPUTS)
+rfStructsEchoRx.hex: $(EXE_OUTPUTS)
 	@echo 'Building secondary target: "$@"'
 	@echo 'Invoking: Arm Hex Utility'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armhex" --diag_wrap=off -o "MoveStructsRx.hex" $(EXE_OUTPUTS__QUOTED)
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armhex" --diag_wrap=off -o "rfStructsEchoRx.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building secondary target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "syscfg\ti_sysbios_config.obj" "main_tirtos.obj" "moveStructsRx.obj" "data\dataFormat.obj" "easylink\EasyLink.obj" 
-	-$(RM) "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "syscfg\ti_sysbios_config.d" "main_tirtos.d" "moveStructsRx.d" "data\dataFormat.d" "easylink\EasyLink.d" 
+	-$(RM) "main_tirtos.obj" "rfStructsEchoRx.obj" "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "syscfg\ti_sysbios_config.obj" "data\dataFormat.obj" "easylink\EasyLink.obj" 
+	-$(RM) "main_tirtos.d" "rfStructsEchoRx.d" "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "syscfg\ti_sysbios_config.d" "data\dataFormat.d" "easylink\EasyLink.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

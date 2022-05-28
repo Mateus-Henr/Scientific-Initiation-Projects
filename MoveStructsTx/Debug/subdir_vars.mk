@@ -9,16 +9,16 @@ CMD_SRCS += \
 ../cc13x2_cc26x2_tirtos7.cmd 
 
 SYSCFG_SRCS += \
-../config.syscfg 
+../rfStructsEchoTx.syscfg 
 
 C_SRCS += \
+../main_tirtos.c \
+../rfStructsEchoTx.c \
 ./syscfg/ti_easylink_config.c \
 ./syscfg/ti_devices_config.c \
 ./syscfg/ti_radio_config.c \
 ./syscfg/ti_drivers_config.c \
-./syscfg/ti_sysbios_config.c \
-../main_tirtos.c \
-../moveStructsTx.c 
+./syscfg/ti_sysbios_config.c 
 
 GEN_FILES += \
 ./syscfg/ti_easylink_config.c \
@@ -31,22 +31,22 @@ GEN_MISC_DIRS += \
 ./syscfg/ 
 
 C_DEPS += \
+./main_tirtos.d \
+./rfStructsEchoTx.d \
 ./syscfg/ti_easylink_config.d \
 ./syscfg/ti_devices_config.d \
 ./syscfg/ti_radio_config.d \
 ./syscfg/ti_drivers_config.d \
-./syscfg/ti_sysbios_config.d \
-./main_tirtos.d \
-./moveStructsTx.d 
+./syscfg/ti_sysbios_config.d 
 
 OBJS += \
+./main_tirtos.obj \
+./rfStructsEchoTx.obj \
 ./syscfg/ti_easylink_config.obj \
 ./syscfg/ti_devices_config.obj \
 ./syscfg/ti_radio_config.obj \
 ./syscfg/ti_drivers_config.obj \
-./syscfg/ti_sysbios_config.obj \
-./main_tirtos.obj \
-./moveStructsTx.obj 
+./syscfg/ti_sysbios_config.obj 
 
 GEN_MISC_FILES += \
 ./syscfg/ti_easylink_config.h \
@@ -62,13 +62,13 @@ GEN_MISC_DIRS__QUOTED += \
 "syscfg\" 
 
 OBJS__QUOTED += \
+"main_tirtos.obj" \
+"rfStructsEchoTx.obj" \
 "syscfg\ti_easylink_config.obj" \
 "syscfg\ti_devices_config.obj" \
 "syscfg\ti_radio_config.obj" \
 "syscfg\ti_drivers_config.obj" \
-"syscfg\ti_sysbios_config.obj" \
-"main_tirtos.obj" \
-"moveStructsTx.obj" 
+"syscfg\ti_sysbios_config.obj" 
 
 GEN_MISC_FILES__QUOTED += \
 "syscfg\ti_easylink_config.h" \
@@ -81,13 +81,13 @@ GEN_MISC_FILES__QUOTED += \
 "syscfg\ti_sysbios_config.h" 
 
 C_DEPS__QUOTED += \
+"main_tirtos.d" \
+"rfStructsEchoTx.d" \
 "syscfg\ti_easylink_config.d" \
 "syscfg\ti_devices_config.d" \
 "syscfg\ti_radio_config.d" \
 "syscfg\ti_drivers_config.d" \
-"syscfg\ti_sysbios_config.d" \
-"main_tirtos.d" \
-"moveStructsTx.d" 
+"syscfg\ti_sysbios_config.d" 
 
 GEN_FILES__QUOTED += \
 "syscfg\ti_easylink_config.c" \
@@ -96,16 +96,16 @@ GEN_FILES__QUOTED += \
 "syscfg\ti_drivers_config.c" \
 "syscfg\ti_sysbios_config.c" 
 
-SYSCFG_SRCS__QUOTED += \
-"../config.syscfg" 
-
 C_SRCS__QUOTED += \
+"../main_tirtos.c" \
+"../rfStructsEchoTx.c" \
 "./syscfg/ti_easylink_config.c" \
 "./syscfg/ti_devices_config.c" \
 "./syscfg/ti_radio_config.c" \
 "./syscfg/ti_drivers_config.c" \
-"./syscfg/ti_sysbios_config.c" \
-"../main_tirtos.c" \
-"../moveStructsTx.c" 
+"./syscfg/ti_sysbios_config.c" 
+
+SYSCFG_SRCS__QUOTED += \
+"../rfStructsEchoTx.syscfg" 
 
 

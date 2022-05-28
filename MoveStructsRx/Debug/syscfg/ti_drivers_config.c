@@ -34,15 +34,13 @@ const uint_least8_t GPIO_pinUpperBound = 30;
  */
 GPIO_PinConfig gpioPinConfigs[31] = {
     0, /* Pin is not available on this device */
-    /* Owned by CONFIG_LED_0 as LED GPIO */
-    GPIO_CFG_OUTPUT_INTERNAL | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW, /* CONFIG_LED_0_GPIO */
+    GPIO_CFG_NO_DIR, /* DIO_1 */
     GPIO_CFG_NO_DIR, /* DIO_2 */
     GPIO_CFG_NO_DIR, /* DIO_3 */
-    /* Owned by CONFIG_LED_1 as LED GPIO */
-    GPIO_CFG_OUTPUT_INTERNAL | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW, /* CONFIG_LED_1_GPIO */
+    GPIO_CFG_NO_DIR, /* DIO_4 */
     GPIO_CFG_NO_DIR, /* DIO_5 */
-    GPIO_CFG_NO_DIR, /* DIO_6 */
-    GPIO_CFG_NO_DIR, /* DIO_7 */
+    GPIO_CFG_OUTPUT_INTERNAL | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW, /* CONFIG_GPIO_RLED */
+    GPIO_CFG_OUTPUT_INTERNAL | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW, /* CONFIG_GPIO_GLED */
     GPIO_CFG_NO_DIR, /* DIO_8 */
     GPIO_CFG_NO_DIR, /* DIO_9 */
     GPIO_CFG_NO_DIR, /* DIO_10 */
@@ -83,8 +81,8 @@ GPIO_CallbackFxn gpioCallbackFunctions[31];
  */
 void* gpioUserArgs[31];
 
-const uint_least8_t CONFIG_LED_0_GPIO_CONST = CONFIG_LED_0_GPIO;
-const uint_least8_t CONFIG_LED_1_GPIO_CONST = CONFIG_LED_1_GPIO;
+const uint_least8_t CONFIG_GPIO_RLED_CONST = CONFIG_GPIO_RLED;
+const uint_least8_t CONFIG_GPIO_GLED_CONST = CONFIG_GPIO_GLED;
 
 /*
  *  ======== GPIO_config ========
@@ -136,44 +134,6 @@ const RFCC26XX_HWAttrsV2 RFCC26XX_hwAttrs = {
     .globalEventMask    = 0
 };
 
-
-/*
- *  =============================== LED ===============================
- */
-#include <ti/drivers/apps/LED.h>
-
-#define CONFIG_LED_COUNT 2
-LED_Object LEDObjects[CONFIG_LED_COUNT];
-
-static const LED_HWAttrs LEDHWAttrs[CONFIG_LED_COUNT] = {
-    /* CONFIG_LED_0 */
-    {
-        .type = LED_GPIO_CONTROLLED,
-        .index = CONFIG_LED_0_GPIO,
-    },
-    /* CONFIG_LED_1 */
-    {
-        .type = LED_GPIO_CONTROLLED,
-        .index = CONFIG_LED_1_GPIO,
-    },
-};
-
-const LED_Config LED_config[CONFIG_LED_COUNT] = {
-    /* CONFIG_LED_0 */
-    {
-        .object = &LEDObjects[CONFIG_LED_0],
-        .hwAttrs = &LEDHWAttrs[CONFIG_LED_0]
-    },
-    /* CONFIG_LED_1 */
-    {
-        .object = &LEDObjects[CONFIG_LED_1],
-        .hwAttrs = &LEDHWAttrs[CONFIG_LED_1]
-    },
-};
-
-const uint_least8_t CONFIG_LED_0_CONST = CONFIG_LED_0;
-const uint_least8_t CONFIG_LED_1_CONST = CONFIG_LED_1;
-const uint_least8_t LED_count = CONFIG_LED_COUNT;
 
 #include <stdbool.h>
 

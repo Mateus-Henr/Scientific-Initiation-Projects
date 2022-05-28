@@ -37,12 +37,6 @@ digraph Model
     ti_drivers_RF -> ti_drivers_Power
     ti_drivers_RF -> ti_drivers_Board
 
-    // mod.$name=/ti/drivers/apps/LED
-    CONFIG_LED_0 -> ti_drivers_Board
-    CONFIG_LED_1 -> ti_drivers_Board
-    CONFIG_LED_0 -> CONFIG_LED_0_GPIO
-    CONFIG_LED_1 -> CONFIG_LED_1_GPIO
-
     // mod.$name=/ti/easylink/easylink
     ti_easylink_easylink -> ti_drivers_RF
     ti_easylink_easylink -> ti_devices_radioconfig_rfdesign
