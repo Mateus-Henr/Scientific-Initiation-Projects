@@ -1,4 +1,7 @@
+# Workspace Stuff
 .jxbrowser.userdata/
 .metadata/
 dvt/
 RemoteSystemsTempFiles/
+.idea/
+cmake-build-debug/
