@@ -5,29 +5,25 @@
 #include "dataFormat.h"
 
 
-/* Initialise SensorData with some mockup data.
+/* Initialise a struct of type SensorData.
  *
  * @param   sensorData    pointer to the struct.
  */
-void initializeMockupSensorData(SensorData *sensorData)
+void initializeSensorData(SensorData *sensorData, uint16_t value, uint16_t readTime)
 {
-    sensorData->value = 5555;
-
-    time_t raw_time = time(NULL);
-    struct tm *now = localtime(&raw_time);
-    // Arrange time into the format 025959 (hhmm)
-    sensorData->readTime = now->tm_hour * 100 + now->tm_min;
+    sensorData->value = value;
+    sensorData->readTime = readTime;
 }
 
 
-/* Initialise Command with some mockup data.
+/* Initialise a struct of type Command.
  *
  * @param   command   pointer to the struct.
  */
-void initializeMockupCommandData(Command *command)
+void initializeCommandData(Command *command, uint8_t type, uint16_t value)
 {
-    command->type = 'c';
-    command->value = 50;
+    command->type = type;
+    command->value = value;
 }
 
 

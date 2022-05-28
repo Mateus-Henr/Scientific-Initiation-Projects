@@ -1,14 +1,9 @@
 /*
- *  ======== moveStructsRx.c ========
+ *  ======== rfStructsEchoRx.c ========
 */
 
 /* XDC Module Headers */
 #include <xdc/runtime/System.h>
-
-/* For usleep() */
-#include <unistd.h>
-#include <stdint.h>
-#include <stddef.h>
 
 /* Data transmission files */
 #include "data/dataFormat.h"
@@ -25,12 +20,19 @@
 /* Time */
 #define ONE_SECOND 1000
 
+/* Mockup data */
+#define SENSORDATA_VALUE 444
+#define SENSORDATA_READTIME 1356
+#define COMMAND_TYPE 'c'
+#define COMMAND_VALUE 345
+
 
 /* Packet that receives the data */
 EasyLink_RxPacket rxPacket = {{0}, 0, 0, 0, 0, {0}};
 
 /* Packet that echos the data */
 EasyLink_TxPacket txPacket = {{0}, 0, 0, {0}};
+
 
 /*
  *  ======== mainThread ========
@@ -74,29 +76,25 @@ void *mainThread(void *arg0)
 
         if (resultRx == EasyLink_Status_Success)
         {
-            GPIO_write(CONFIG_GPIO_RLED, CONFIG_GPIO_LED_ON);
+            /* Toggle RLED to indicate that the packet was received, clear GLED */
+            GPIO_toggle(CONFIG_GPIO_RLED);
             GPIO_write(CONFIG_GPIO_GLED, CONFIG_GPIO_LED_OFF);
 
             /* Deserialize data received into the proper struct */
             deserializeCommand(&commandRx, rxPacket.payload, deserializeSensorData(&sensorDataRx, rxPacket.payload, 0));
 
             /* Check if data received is equal to the mockup data that was sent */
-            if (sensorDataRx.value == 5555 && sensorDataRx.readTime == 250520022 && commandRx.type == 10 && commandRx.value == 50)
+            if (sensorDataRx.value == 555 && sensorDataRx.readTime == 1412 && commandRx.type == 'a' && commandRx.value == 123)
             {
                 /* Initialise variables */
                 SensorData sensorDataTx;
                 Command commandTx;
 
                 /* Initialise mockup data to be sent */
-                initializeMockupSensorData(&sensorDataTx);
-                initializeMockupCommandData(&commandTx);
+                initializeSensorData(&sensorDataTx, SENSORDATA_VALUE, SENSORDATA_READTIME);
+                initializeCommandData(&commandTx, COMMAND_TYPE, COMMAND_VALUE);
 
-                txPacket.absTime = 0;
-
-                /*
-                 * Address filtering is enabled by default on the Rx device with the
-                 * an address of 0xAA. This device must set the dstAddr accordingly.
-                 */
+                /* Set the default address of the receiver */
                 txPacket.dstAddr[0] = 0xaa;
 
                 /* Serialize structs and set the payload's size */

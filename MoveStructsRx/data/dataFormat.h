@@ -13,9 +13,9 @@ typedef struct Command
 } Command;
 
 
-void initializeMockupSensorData(SensorData *sensorData);
+void initializeSensorData(SensorData *sensorData, uint16_t value, uint16_t readTime);
 
-void initializeMockupCommandData(Command *command);
+void initializeCommandData(Command *command, uint8_t type, uint16_t value);
 
 uint8_t serializeSensorData(uint8_t *buf, SensorData *sensorData, uint8_t offset);
 
