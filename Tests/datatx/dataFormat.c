@@ -16,7 +16,7 @@ void initializeMockupSensorData(SensorData *sensorData)
 
     time_t raw_time = time(NULL);
     struct tm *now = localtime(&raw_time);
-    // Arrange time into the format 025959 (hhmm)
+    // Arrange time into the format 0259 (hhmm)
     sensorData->readTime = now->tm_hour * 100 + now->tm_min;
 }
 

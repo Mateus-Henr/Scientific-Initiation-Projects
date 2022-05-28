@@ -82,13 +82,19 @@ void *mainThread(void *arg0)
         /* Receive the packet */
         EasyLink_Status result = EasyLink_receive(&rxPacket);
 
-        /* Deserialize data received into the proper struct */
-        deserializeCommand(&command, rxPacket.payload, deserializeSensorData(&sensorData, rxPacket.payload, 0));
-
-        /* Check if data received is equal to the mockup data that was sent */
-        if (sensorData.value == 555555 && sensorData.readTime == 250520022 && command.type == 10 && command.value == 50)
+        if (result == EasyLink_Status_Success)
         {
-            LED_startBlinking(ledHandle[CONFIG_LED_0], ONE_SECOND, LED_BLINK_FOREVER);
+            /* Deserialize data received into the proper struct */
+            deserializeCommand(&command, rxPacket.payload, deserializeSensorData(&sensorData, rxPacket.payload, 0));
+
+            /* Check if data received is equal to the mockup data that was sent */
+            if (sensorData.value == 555555 && sensorData.readTime == 250520022 && command.type == 10 && command.value == 50)
+            {
+                LED_startBlinking(ledHandle[CONFIG_LED_0], ONE_SECOND, LED_BLINK_FOREVER);
+
+                /* Sending data back */
+
+            }
         }
     }
 }
