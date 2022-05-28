@@ -5,9 +5,6 @@
 /* XDC Module Headers */
 #include <xdc/runtime/System.h>
 
-/* Data transmission files */
-#include "data/dataFormat.h"
-
 /* Driver Header files */
 #include <ti/drivers/GPIO.h>
 
@@ -16,6 +13,9 @@
 
 /* EasyLink API Header files */
 #include "easylink/EasyLink.h"
+
+/* Data transmission files */
+#include "data/dataFormat.h"
 
 /* Time */
 #define ONE_SECOND 1000
@@ -55,11 +55,7 @@ void *mainThread(void *arg0)
     EasyLink_Params easyLink_params;
     EasyLink_Params_init(&easyLink_params);
 
-    /*
-     * Initialise EasyLink with the settings found in ti_easylink_config.h
-     * Modify EASYLINK_PARAM_CONFIG in ti_easylink_config.h to change the default
-     * PHY
-     */
+    /* Initialise EasyLink with the settings found in ti_easylink_config.h */
     if (EasyLink_init(&easyLink_params) != EasyLink_Status_Success)
     {
         System_abort("EasyLink_init failed");
@@ -67,7 +63,7 @@ void *mainThread(void *arg0)
 
     while (1)
     {
-        /* Initialise variables */
+        /* Define structs to store data */
         SensorData sensorDataRx;
         Command commandRx;
 
@@ -86,7 +82,7 @@ void *mainThread(void *arg0)
             /* Check if data received is equal to the mockup data that was sent */
             if (sensorDataRx.value == 555 && sensorDataRx.readTime == 1412 && commandRx.type == 'a' && commandRx.value == 123)
             {
-                /* Initialise variables */
+                /* Define structs to be sent */
                 SensorData sensorDataTx;
                 Command commandTx;
 
@@ -108,7 +104,7 @@ void *mainThread(void *arg0)
 
                 if (resultTx == EasyLink_Status_Success)
                 {
-                    /* Toggle GLED to indicate Echo TX, clear RLED */
+                    /* Toggle GLED to indicate Echo TX, clear RLED. Notice if the GLED turns on is because everything works. */
                     GPIO_toggle(CONFIG_GPIO_GLED);
                     GPIO_write(CONFIG_GPIO_RLED, CONFIG_GPIO_LED_OFF);
                 }

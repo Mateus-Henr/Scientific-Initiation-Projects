@@ -81,23 +81,23 @@ void *mainThread(void *arg0)
         txPacket.absTime = EasyLink_ms_To_RadioTime(ONE_SECOND);
 
         /* Send packet */
-        EasyLink_Status result = EasyLink_transmit(&txPacket);
+        EasyLink_Status resultTx = EasyLink_transmit(&txPacket);
 
-        if (result == EasyLink_Status_Success)
+        if (resultTx == EasyLink_Status_Success)
         {
             /* Toggle RLED to indicate that the packet was sent, clear GLED */
             GPIO_toggle(CONFIG_GPIO_RLED);
             GPIO_write(CONFIG_GPIO_GLED, CONFIG_GPIO_LED_OFF);
+
+            /* Define structs to store data */
+            SensorData sensorDataRx;
+            Command commandRx;
 
             /* Switch to Receiver and set interval of transmission */
             rxPacket.absTime = 0;
 
             /* Receive packet */
             EasyLink_Status resultRx = EasyLink_receive(&rxPacket);
-
-            /* Define structs to be sent */
-            SensorData sensorDataRx;
-            Command commandRx;
 
             /* Deserialize data received into the proper struct */
             deserializeCommand(&commandRx, rxPacket.payload, deserializeSensorData(&sensorDataRx, rxPacket.payload, 0));
@@ -106,7 +106,7 @@ void *mainThread(void *arg0)
             {
                 if (sensorDataRx.value == 444 && sensorDataRx.readTime == 1356 && commandRx.type == 'c' && commandRx.value == 345)
                 {
-                    /* Toggle GLED to indicate Echo RX, clear RLED */
+                    /* Toggle GLED to indicate Echo RX, clear RLED. Notice if the GLED turns on is because everything works. */
                     GPIO_toggle(CONFIG_GPIO_GLED);
                     GPIO_write(CONFIG_GPIO_RLED, CONFIG_GPIO_LED_OFF);
                 }
