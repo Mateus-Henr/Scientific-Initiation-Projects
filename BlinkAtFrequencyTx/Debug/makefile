@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS
+CG_TOOL_ROOT := F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -151,14 +151,14 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 BlinkAtFrequencyTx.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"BlinkAtFrequencyTx.map" -i"C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" -i"C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" -i"C:/Projects/CCS/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" -i"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="BlinkAtFrequencyTx_linkInfo.xml" --rom_model -o "BlinkAtFrequencyTx.out" $(ORDERED_OBJS)
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me -O3 --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"BlinkAtFrequencyTx.map" -i"F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source" -i"F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages" -i"F:/Scientific-Initiation-Projects/BlinkAtFrequencyTx/Debug/syscfg" -i"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="BlinkAtFrequencyTx_linkInfo.xml" --rom_model -o "BlinkAtFrequencyTx.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 BlinkAtFrequencyTx.hex: $(EXE_OUTPUTS)
 	@echo 'Building secondary target: "$@"'
 	@echo 'Invoking: Arm Hex Utility'
-	"C:/Programming/TI/CCS/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armhex" --diag_wrap=off -o "BlinkAtFrequencyTx.hex" $(EXE_OUTPUTS__QUOTED)
+	"F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/bin/armhex" --diag_wrap=off -o "BlinkAtFrequencyTx.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building secondary target: "$@"'
 	@echo ' '
 

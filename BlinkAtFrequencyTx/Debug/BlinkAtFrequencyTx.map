@@ -1,7 +1,7 @@
 ******************************************************************************
-                  TI ARM Linker PC v20.2.5                     
+                  TI ARM Linker PC v20.2.6                     
 ******************************************************************************
->> Linked Mon May 30 09:50:51 2022
+>> Linked Wed Jun  8 19:48:41 2022
 
 OUTPUT FILE NAME:   <BlinkAtFrequencyTx.out>
 ENTRY POINT SYMBOL: "ResetISR"  address: 00004c95
@@ -11,7 +11,7 @@ MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  FLASH                 00000000   00058000  00008a46  0004f5ba  R  X
+  FLASH                 00000000   00058000  00008af6  0004f50a  R  X
   GPRAM                 11000000   00002000  00000000  00002000  RW X
   SRAM                  20000000   00014000  00005b11  0000e4ef  RW X
   LOG_DATA              90000000   00040000  00000000  00040000  R   
@@ -21,14 +21,14 @@ SEGMENT ALLOCATION MAP
 
 run origin  load origin   length   init length attrs members
 ----------  ----------- ---------- ----------- ----- -------
-00000000    00000000    00008800   00008800    r-x
+00000000    00000000    000088b0   000088b0    r-x
   00000000    00000000    0000003c   0000003c    r-- .resetVecs
   0000003c    0000003c    00007416   00007416    r-x .text
-  00007454    00007454    000013ac   000013ac    r-- .const
-00008800    00008800    00000008   00000008    rw-
-  00008800    00008800    00000008   00000008    rw- .args
-00008808    00008808    000001e8   000001e8    r--
-  00008808    00008808    000001e8   000001e8    r-- .cinit
+  00007454    00007454    0000145c   0000145c    r-- .const
+000088b0    000088b0    00000008   00000008    rw-
+  000088b0    000088b0    00000008   00000008    rw- .args
+000088b8    000088b8    000001e8   000001e8    r--
+  000088b8    000088b8    000001e8   000001e8    r-- .cinit
 00057fa8    00057fa8    00000058   00000058    r--
   00057fa8    00057fa8    00000058   00000058    r-- .ccfg
 200000d8    200000d8    00004000   00000000    r--
@@ -47,12 +47,12 @@ section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
 .binit     0    00000000    00000000     
 
-.cinit     0    00008808    000001e8     
-                  00008808    000001c1     (.cinit..data.load) [load image, compression = lzss]
-                  000089c9    00000003     --HOLE-- [fill = 0]
-                  000089cc    0000000c     (__TI_handler_table)
-                  000089d8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
-                  000089e0    00000010     (__TI_cinit_table)
+.cinit     0    000088b8    000001e8     
+                  000088b8    000001c1     (.cinit..data.load) [load image, compression = lzss]
+                  00008a79    00000003     --HOLE-- [fill = 0]
+                  00008a7c    0000000c     (__TI_handler_table)
+                  00008a88    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00008a90    00000010     (__TI_cinit_table)
 
 .init_array 
 *          0    00000000    00000000     UNINITIALIZED
@@ -535,22 +535,22 @@ __llvm_prf_cnts
                   0000744a    00000004                      : PowerCC26X2.oem4f (.text:nopResourceHandler)
                   0000744e    00000004     ti_sysbios_config.obj (.text:ti_sysbios_heaps_HeapMem_isBlocking)
 
-.const     0    00007454    000013ac     
-                  00007454    00000bf4     ti_sysbios_config.obj (.const:$O2$$)
-                  00008048    000006ec     rf_multiMode_cc13x2.a : rf_patch_cpe_multi_protocol.c.cc13x2.ccs.o (.const:$O1$$)
-                  00008734    00000054     drivers_cc13x2.a : PowerCC26X2.oem4f (.const:resourceDB)
-                  00008788    00000020     rf_multiMode_cc13x2.a : RFCC26X2_multiMode.c.cc13x2.ccs.o (.const:RF_defaultParams)
-                  000087a8    00000014     ti_drivers_config.obj (.const:PowerCC26X2_config)
-                  000087bc    00000010     EasyLink.obj (.const:EasyLink_defaultParams)
-                  000087cc    00000010     ti_drivers_config.obj (.const:GPIO_config)
-                  000087dc    0000000c     ti_drivers_config.obj (.const:RFCC26XX_hwAttrs)
-                  000087e8    00000008     driverlib.lib : aux_sysif.obj (.const:$O1$$)
-                  000087f0    00000008     ti_sysbios_config.obj (.const:ti_sysbios_knl_Idle_funcList)
-                  000087f8    00000007     ti_drivers_config.obj (.const)
-                  000087ff    00000001     ti_easylink_config.obj (.const)
+.const     0    00007454    0000145c     
+                  00007454    00000ca4     ti_sysbios_config.obj (.const:$O2$$)
+                  000080f8    000006ec     rf_multiMode_cc13x2.a : rf_patch_cpe_multi_protocol.c.cc13x2.ccs.o (.const:$O1$$)
+                  000087e4    00000054     drivers_cc13x2.a : PowerCC26X2.oem4f (.const:resourceDB)
+                  00008838    00000020     rf_multiMode_cc13x2.a : RFCC26X2_multiMode.c.cc13x2.ccs.o (.const:RF_defaultParams)
+                  00008858    00000014     ti_drivers_config.obj (.const:PowerCC26X2_config)
+                  0000886c    00000010     EasyLink.obj (.const:EasyLink_defaultParams)
+                  0000887c    00000010     ti_drivers_config.obj (.const:GPIO_config)
+                  0000888c    0000000c     ti_drivers_config.obj (.const:RFCC26XX_hwAttrs)
+                  00008898    00000008     driverlib.lib : aux_sysif.obj (.const:$O1$$)
+                  000088a0    00000008     ti_sysbios_config.obj (.const:ti_sysbios_knl_Idle_funcList)
+                  000088a8    00000007     ti_drivers_config.obj (.const)
+                  000088af    00000001     ti_easylink_config.obj (.const)
 
-.args      0    00008800    00000008     
-                  00008800    00000008     --HOLE-- [fill = 0]
+.args      0    000088b0    00000008     
+                  000088b0    00000008     --HOLE-- [fill = 0]
 
 MODULE SUMMARY
 
@@ -568,15 +568,15 @@ MODULE SUMMARY
        Total:                                       1966    16        1008   
                                                                              
     .\syscfg\
-       ti_sysbios_config.obj                        9256    3128      1985   
+       ti_sysbios_config.obj                        9256    3304      1985   
        ti_drivers_config.obj                        240     55        372    
        ti_radio_config.obj                          0       0         298    
        ti_devices_config.obj                        0       88        0      
        ti_easylink_config.obj                       0       1         36     
     +--+--------------------------------------------+-------+---------+---------+
-       Total:                                       9496    3272      2691   
+       Total:                                       9496    3448      2691   
                                                                              
-    C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages/ti/sysbios/lib/ccs/m4f/sysbios.a
+    F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/kernel/tirtos7/packages/ti/sysbios/lib/ccs/m4f/sysbios.a
        Hwi_asm.obj                                  322     0         0      
        auto_init.obj                                160     0         0      
        Hwi_asm_switch.obj                           118     0         0      
@@ -585,7 +585,7 @@ MODULE SUMMARY
     +--+--------------------------------------------+-------+---------+---------+
        Total:                                       732     0         0      
                                                                              
-    C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/devices/cc13x2_cc26x2/driverlib/bin/ccs/driverlib.lib
+    F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/devices/cc13x2_cc26x2/driverlib/bin/ccs/driverlib.lib
        osc.obj                                      484     0         36     
        sys_ctrl.obj                                 420     0         0      
        setup.obj                                    368     0         0      
@@ -596,7 +596,7 @@ MODULE SUMMARY
     +--+--------------------------------------------+-------+---------+---------+
        Total:                                       1768    8         36     
                                                                              
-    C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/lib/ccs/m4f/drivers_cc13x2.a
+    F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/lib/ccs/m4f/drivers_cc13x2.a
        PowerCC26X2.oem4f                            1930    84        368    
        PowerCC26X2_calibrateRCOSC.oem4f             980     0         0      
        PINCC26XX.oem4f                              576     0         273    
@@ -608,14 +608,14 @@ MODULE SUMMARY
     +--+--------------------------------------------+-------+---------+---------+
        Total:                                       5008    84        670    
                                                                              
-    C:/ti/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/rf/lib/ccs/m4f/rf_multiMode_cc13x2.a
+    F:/ti/ccs1110/simplelink_cc13xx_cc26xx_sdk_6_10_00_29/source/ti/drivers/rf/lib/ccs/m4f/rf_multiMode_cc13x2.a
        RFCC26X2_multiMode.c.cc13x2.ccs.o            9172    32        1317   
        rf_patch_cpe_multi_protocol.c.cc13x2.ccs.o   188     1772      1      
        rfc.c.cc13x2.ccs.o                           302     0         0      
     +--+--------------------------------------------+-------+---------+---------+
        Total:                                       9662    1804      1318   
                                                                              
-    C:\Programming\TI\CCS\ccs\tools\compiler\ti-cgt-arm_20.2.5.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+    F:\ti\ccs1110\ccs\tools\compiler\ti-cgt-arm_20.2.6.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
        memcpy_t2.asm.obj                            156     0         0      
        ull_div_t2.asm.obj                           150     0         0      
        memset_t2.asm.obj                            122     0         0      
@@ -635,19 +635,19 @@ MODULE SUMMARY
        Stack:                                       0       0         1024   
        Linker Generated:                            0       485       0      
     +--+--------------------------------------------+-------+---------+---------+
-       Grand Total:                                 29714   5669      6927   
+       Grand Total:                                 29714   5845      6927   
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 000089e0 records: 2, size/record: 8, table size: 16
-	.data: load addr=00008808, load size=000001c1 bytes, run addr=200040d8, run size=000010b0 bytes, compression=lzss
-	.bss: load addr=000089d8, load size=00000008 bytes, run addr=20005188, run size=00000589 bytes, compression=zero_init
+__TI_cinit_table @ 00008a90 records: 2, size/record: 8, table size: 16
+	.data: load addr=000088b8, load size=000001c1 bytes, run addr=200040d8, run size=000010b0 bytes, compression=lzss
+	.bss: load addr=00008a88, load size=00000008 bytes, run addr=20005188, run size=00000589 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 000089cc records: 3, size/record: 4, table size: 12
+__TI_handler_table @ 00008a7c records: 3, size/record: 4, table size: 12
 	index: 0, handler: __TI_decompress_lzss
 	index: 1, handler: __TI_decompress_none
 	index: 2, handler: __TI_zero_init
@@ -680,10 +680,10 @@ address   name
 00004fa9  Board_shutDownExtFlash                                             
 00005f19  Board_wakeUpExtFlash                                               
 00002eb9  Boot_trimDevice                                                    
-000087fc  CONFIG_LED_0_CONST                                                 
-000087fa  CONFIG_LED_0_GPIO_CONST                                            
-000087fd  CONFIG_LED_1_CONST                                                 
-000087fb  CONFIG_LED_1_GPIO_CONST                                            
+000088ac  CONFIG_LED_0_CONST                                                 
+000088aa  CONFIG_LED_0_GPIO_CONST                                            
+000088ad  CONFIG_LED_1_CONST                                                 
+000088ab  CONFIG_LED_1_GPIO_CONST                                            
 00007381  ClockP_Params_init                                                 
 00005cad  ClockP_construct                                                   
 000073ff  ClockP_destruct                                                    
@@ -697,15 +697,15 @@ address   name
 00007081  EasyLink_Params_init                                               
 0000695d  EasyLink_getAbsTime                                                
 0000003d  EasyLink_init                                                      
-000087ff  EasyLink_numSupportedPhys                                          
+000088af  EasyLink_numSupportedPhys                                          
 200050dc  EasyLink_supportedPhys                                             
 000010d9  EasyLink_transmit                                                  
-000087cc  GPIO_config                                                        
+0000887c  GPIO_config                                                        
 00006b15  GPIO_disableInt                                                    
 000050a5  GPIO_hwiIntFxn                                                     
 0000266d  GPIO_init                                                          
-000087f8  GPIO_pinLowerBound                                                 
-000087f9  GPIO_pinUpperBound                                                 
+000088a8  GPIO_pinLowerBound                                                 
+000088a9  GPIO_pinUpperBound                                                 
 00005f49  GPIO_resetConfig                                                   
 00006b31  GPIO_setCallback                                                   
 00003e5d  GPIO_setConfig                                                     
@@ -722,7 +722,7 @@ address   name
 00006dc7  HwiP_setFunc                                                       
 UNDEFED   ITM_flush                                                          
 UNDEFED   ITM_restore                                                        
-000087fe  LED_count                                                          
+000088ae  LED_count                                                          
 00006e9d  List_clearList                                                     
 000068f9  List_get                                                           
 00006269  List_insert                                                        
@@ -763,7 +763,7 @@ UNDEFED   ITM_restore
 000056d5  PowerCC26X2_RCOSC_clockFunc                                        
 0000404d  PowerCC26X2_auxISR                                                 
 00006ec5  PowerCC26X2_calibrate                                              
-000087a8  PowerCC26X2_config                                                 
+00008858  PowerCC26X2_config                                                 
 0000697d  PowerCC26X2_disableTCXOQual                                        
 0000699d  PowerCC26X2_enableTCXOQual                                         
 00004be5  PowerCC26X2_initiateCalibration                                    
@@ -808,7 +808,7 @@ UNDEFED   ITM_restore
 00003031  Power_setDependency                                                
 0000128d  Power_sleep                                                        
 000069bd  Power_unregisterNotify                                             
-000087dc  RFCC26XX_hwAttrs                                                   
+0000888c  RFCC26XX_hwAttrs                                                   
 20005178  RFCC26XX_schedulerPolicy                                           
 00006eed  RF_Params_init                                                     
 00006b69  RF_ScheduleCmdParams_init                                          
@@ -846,10 +846,10 @@ UNDEFED   SHT$$INIT_ARRAY$$Limit
 00005bcd  SwiP_restore                                                       
 20014000  __STACK_END                                                        
 00000400  __STACK_SIZE                                                       
-000089e0  __TI_CINIT_Base                                                    
-000089f0  __TI_CINIT_Limit                                                   
-000089cc  __TI_Handler_Table_Base                                            
-000089d8  __TI_Handler_Table_Limit                                           
+00008a90  __TI_CINIT_Base                                                    
+00008aa0  __TI_CINIT_Limit                                                   
+00008a7c  __TI_Handler_Table_Base                                            
+00008a88  __TI_Handler_Table_Limit                                           
 0000359d  __TI_auto_init                                                     
 000047c1  __TI_decompress_lzss                                               
 000071ff  __TI_decompress_none                                               
@@ -872,7 +872,7 @@ ffffffff  __TI_prof_data_start
 00003fd3  __aeabi_memset8                                                    
 0000380d  __aeabi_uldivmod                                                   
 ffffffff  __binit__                                                          
-00008800  __c_args__                                                         
+000088b0  __c_args__                                                         
 00057fa8  __ccfg                                                             
 200040d8  __primary_heap_end__                                               
 200000d8  __primary_heap_start__                                             
@@ -919,7 +919,7 @@ ffffffff  binit
 00007395  pthread_self                                                       
 00006187  pthread_setcancelstate                                             
 00005db1  rand                                                               
-00008734  resourceDB                                                         
+000087e4  resourceDB                                                         
 00006009  rf_patch_cpe_multi_protocol                                        
 200049f0  ti_sysbios_family_arm_cc26xx_Timer_Module_state                    
 000017e1  ti_sysbios_family_arm_cc26xx_Timer_construct                       
@@ -1016,7 +1016,7 @@ ffffffff  binit
 000045ad  ti_sysbios_knl_Clock_walkQueueDynamic                              
 0000324d  ti_sysbios_knl_Clock_workFuncDynamic                               
 200049cc  ti_sysbios_knl_Event_state                                         
-000087f0  ti_sysbios_knl_Idle_funcList                                       
+000088a0  ti_sysbios_knl_Idle_funcList                                       
 00003d5d  ti_sysbios_knl_Idle_init                                           
 20004992  ti_sysbios_knl_Idle_initDone                                       
 000073b7  ti_sysbios_knl_Idle_loop                                           
@@ -1493,24 +1493,24 @@ address   name
 0000744f  ti_sysbios_heaps_HeapMem_isBlocking                                
 00007454  ti_sysbios_family_arm_cc26xx_Timer_funcHookCH1                     
 00007458  ti_sysbios_family_arm_cc26xx_Timer_funcHookCH2                     
-00008734  resourceDB                                                         
-000087a8  PowerCC26X2_config                                                 
-000087cc  GPIO_config                                                        
-000087dc  RFCC26XX_hwAttrs                                                   
-000087f0  ti_sysbios_knl_Idle_funcList                                       
-000087f8  GPIO_pinLowerBound                                                 
-000087f9  GPIO_pinUpperBound                                                 
-000087fa  CONFIG_LED_0_GPIO_CONST                                            
-000087fb  CONFIG_LED_1_GPIO_CONST                                            
-000087fc  CONFIG_LED_0_CONST                                                 
-000087fd  CONFIG_LED_1_CONST                                                 
-000087fe  LED_count                                                          
-000087ff  EasyLink_numSupportedPhys                                          
-00008800  __c_args__                                                         
-000089cc  __TI_Handler_Table_Base                                            
-000089d8  __TI_Handler_Table_Limit                                           
-000089e0  __TI_CINIT_Base                                                    
-000089f0  __TI_CINIT_Limit                                                   
+000087e4  resourceDB                                                         
+00008858  PowerCC26X2_config                                                 
+0000887c  GPIO_config                                                        
+0000888c  RFCC26XX_hwAttrs                                                   
+000088a0  ti_sysbios_knl_Idle_funcList                                       
+000088a8  GPIO_pinLowerBound                                                 
+000088a9  GPIO_pinUpperBound                                                 
+000088aa  CONFIG_LED_0_GPIO_CONST                                            
+000088ab  CONFIG_LED_1_GPIO_CONST                                            
+000088ac  CONFIG_LED_0_CONST                                                 
+000088ad  CONFIG_LED_1_CONST                                                 
+000088ae  LED_count                                                          
+000088af  EasyLink_numSupportedPhys                                          
+000088b0  __c_args__                                                         
+00008a7c  __TI_Handler_Table_Base                                            
+00008a88  __TI_Handler_Table_Limit                                           
+00008a90  __TI_CINIT_Base                                                    
+00008aa0  __TI_CINIT_Limit                                                   
 00057fa8  __ccfg                                                             
 20000000  __start___llvm_prf_cnts                                            
 20000000  __stop___llvm_prf_cnts                                             

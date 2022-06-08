@@ -1,7 +1,7 @@
 # FIXED
 
 syscfg/ti_easylink_config.obj: syscfg/ti_easylink_config.c
-syscfg/ti_easylink_config.obj: F:/ScientificInitiationProjects/BlinkAtFrequencyRx/easylink/EasyLink.h
+syscfg/ti_easylink_config.obj: F:/Scientific-Initiation-Projects/BlinkAtFrequencyRx/easylink/EasyLink.h
 syscfg/ti_easylink_config.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/stdbool.h
 syscfg/ti_easylink_config.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/_ti_config.h
 syscfg/ti_easylink_config.obj: F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/linkage.h
@@ -33,7 +33,7 @@ syscfg/ti_easylink_config.obj: syscfg/ti_radio_config.h
 
 syscfg/ti_easylink_config.c:
 
-F:/ScientificInitiationProjects/BlinkAtFrequencyRx/easylink/EasyLink.h:
+F:/Scientific-Initiation-Projects/BlinkAtFrequencyRx/easylink/EasyLink.h:
 
 F:/ti/ccs1110/ccs/tools/compiler/ti-cgt-arm_20.2.6.LTS/include/stdbool.h:
 
