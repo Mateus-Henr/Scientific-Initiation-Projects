@@ -2,10 +2,6 @@
  *  ======== rfStructsEchoTx.c ========
  */
 
-/* For usleep() */
-#include <unistd.h>
-#include <stddef.h>
-
 /* XDC Module Headers */
 #include <xdc/runtime/System.h>
 
@@ -22,10 +18,9 @@
 #include "data/dataFormat.h"
 
 /* Time */
-#define ONE_SECOND 1000
+#define ONE_TENTH_OF_SECOND 100
 
 /* Mockup data */
-#define SENSORDATA_VALUE 555
 #define SENSORDATA_READTIME 1412
 #define COMMAND_TYPE 'a'
 #define COMMAND_VALUE 123
@@ -65,7 +60,6 @@ void *mainThread(void *arg0)
     uint16_t   dutyInc = 100;
 
     /* Sleep time in microseconds */
-    uint32_t   time = 50000;
     PWM_Handle pwm1 = NULL;
     PWM_Params params;
 
@@ -91,6 +85,13 @@ void *mainThread(void *arg0)
         SensorData sensorDataTx;
         Command commandTx;
 
+        duty = (duty + dutyInc);
+
+        if (duty == pwmPeriod || (!duty))
+        {
+            dutyInc = -dutyInc;
+        }
+
         /* Initialise structs with mockup data */
         initializeSensorData(&sensorDataTx, duty, SENSORDATA_READTIME);
         initializeCommandData(&commandTx, COMMAND_TYPE, COMMAND_VALUE);
@@ -103,7 +104,7 @@ void *mainThread(void *arg0)
 
         /* Set interval of transmission 1000ms */
         EasyLink_getAbsTime(&absTime);
-        txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_SECOND);
+        txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_TENTH_OF_SECOND);
 
         /* Send packet */
         EasyLink_Status resultTx = EasyLink_transmit(&txPacket);
@@ -125,16 +126,7 @@ void *mainThread(void *arg0)
 
             if (resultRx == EasyLink_Status_Success)
             {
-                PWM_setDuty(pwm1, sensorDataRx.readTime);
-
-                duty = (duty + dutyInc);
-
-                if (duty == pwmPeriod || (!duty))
-                {
-                    dutyInc = -dutyInc;
-                }
-
-                usleep(time);
+                PWM_setDuty(pwm1, sensorDataRx.value);
             }
         }
     }

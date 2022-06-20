@@ -2,10 +2,6 @@
  *  ======== rfStructsEchoRx.c ========
 */
 
-/* For usleep() */
-#include <unistd.h>
-#include <stddef.h>
-
 /* XDC Module Headers */
 #include <xdc/runtime/System.h>
 
@@ -22,10 +18,9 @@
 #include "data/dataFormat.h"
 
 /* Time */
-#define ONE_SECOND 1000
+#define ONE_TENTH_OF_SECOND 100
 
 /* Mockup data */
-#define SENSORDATA_VALUE 444
 #define SENSORDATA_READTIME 1356
 #define COMMAND_TYPE 'c'
 #define COMMAND_VALUE 345
@@ -65,7 +60,6 @@ void *mainThread(void *arg0)
     uint16_t   dutyInc = 100;
 
     /* Sleep time in microseconds */
-    uint32_t   time = 50000;
     PWM_Handle pwm1 = NULL;
     PWM_Params params;
 
@@ -112,8 +106,6 @@ void *mainThread(void *arg0)
                 dutyInc = -dutyInc;
             }
 
-            usleep(time);
-
             /* Initialise mockup data to be sent */
             initializeSensorData(&sensorDataTx, duty, SENSORDATA_READTIME);
             initializeCommandData(&commandTx, COMMAND_TYPE, COMMAND_VALUE);
@@ -126,7 +118,7 @@ void *mainThread(void *arg0)
 
             /* Set interval of transmission */
             EasyLink_getAbsTime(&absTime);
-            txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_SECOND);
+            txPacket.absTime = absTime + EasyLink_ms_To_RadioTime(ONE_TENTH_OF_SECOND);
 
             /* Sending data back */
             EasyLink_Status resultTx = EasyLink_transmit(&txPacket);
